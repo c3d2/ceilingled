@@ -6,5 +6,6 @@
 ,   "canvas": "*"
 ,   "animation": "*"
 ,   "sdl": "*"
+,   "superfeedr": "*"
   }
 }
