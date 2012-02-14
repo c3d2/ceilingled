@@ -1,0 +1,10 @@
+{ "name": "ceilingled"
+, "version": "0.0.0"
+, "engines": { "node": ">= 0.6" }
+, "dependencies": {
+    "coffee-script": "*"
+,   "canvas": "*"
+,   "animation": "*"
+,   "sdl": "*"
+  }
+}
