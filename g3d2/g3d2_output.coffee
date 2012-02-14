@@ -50,7 +50,6 @@ class exports.Output
             console.log "frametime", now - lastTick, "ms", "(#{dt}ms)"
             @animation.nextTick @loop
         else
-            @animation.pause()
             @sock.once 'drain', =>
                 now = getNow()
                 console.log "drain---------------------------------------------------------------------------------------------------"
