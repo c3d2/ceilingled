@@ -5,7 +5,8 @@
     "coffee-script": "*"
 ,   "canvas": "*"
 ,   "animation": "*"
-,   "sdl": "*"
 ,   "superfeedr": "*"
+,   "request": "*"
+,   "oembed": "*"
   }
 }

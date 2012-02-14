@@ -53,6 +53,25 @@ class exports.DrawText
             ctx.translate(0, th)
 
 
+class exports.DrawImg
+    constructor: (@data) ->
+        img = new Canvas.Image
+        img.onload = =>
+            console.log "image loaded.", @data.length
+            @image = img
+        img.onerror = (err) =>
+            console.error "IMAGE ERRORED:", err
+        img.src = @data
+
+    draw: (ctx, t) ->
+#         return console.log("NO IMAGE!!!!!!!") unless @image?
+        return unless @image?
+        console.log "drawImage", @image.width, @image.height
+        ctx.drawImage @image, 0, 0, @width, @height
+
+    inspect: () ->
+        "IMGBUFFER"
+
 class exports.Transition
     constructor: (@a, @b) ->
 
