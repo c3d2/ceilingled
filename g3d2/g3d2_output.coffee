@@ -1,8 +1,12 @@
 net = require 'net'
+{ Animation } = require 'animation'
 { getNow } = require './util'
 
 class exports.Output
     constructor: (host="g3d2.hq.c3d2.de", port=1339) ->
+        @animation = new Animation
+            frame:'50ms'
+
         @frame = []
         @old_frame = []
         for y in [0..(@height - 1)]
@@ -15,7 +19,7 @@ class exports.Output
         sock = net.connect port, host, =>
             @sock = sock
             @sock.write "0403\r\n"
-            process.nextTick @loop
+            @animation.nextTick @loop
         #sock.on 'data', (data) ->
         #    console.log "<< #{data}"
         sock.on 'close', =>
@@ -38,15 +42,16 @@ class exports.Output
             frame = @frame.map((line) -> line.join("")).join("")
             @sock.write "03#{frame}\r\n"
 
-    loop: =>
+    loop: (dt) =>
         lastTick = getNow()
-        @on_drain?()
+        @on_drain?(dt)
         if @flush()
             now = getNow()
-            console.log "frametime", now - lastTick, "ms"
-            #process.nextTick @loop
-            setTimeout @loop, Math.max(0, 50 - now + lastTick)
+            console.log "frametime", now - lastTick, "ms", "(#{dt}ms)"
+            @animation.nextTick @loop
         else
+            @animation.pause()
             @sock.once 'drain', =>
-                console.log "drain"
-                @loop()
+                now = getNow()
+                console.log "drain---------------------------------------------------------------------------------------------------"
+                @loop(now - lastTick + dt)
