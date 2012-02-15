@@ -8,5 +8,6 @@
 ,   "superfeedr": "*"
 ,   "request": "*"
 ,   "oembed": "*"
+,   "imagemagick": "*"
   }
 }
