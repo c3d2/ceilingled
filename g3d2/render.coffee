@@ -57,10 +57,10 @@ class exports.DrawImg
     constructor: (data) ->
         img = new Canvas.Image
         img.onload = =>
-#             console.log "image loaded.", @data.length
+#             console.log "image loaded.", data.length
             @image = img
         img.onerror = (err) =>
-#             console.error "IMAGE ERRORED:", err
+            console.error "IMAGE ERRORED:", err
         img.src = data
 
     draw: (ctx, t) ->

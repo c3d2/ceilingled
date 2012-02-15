@@ -16,7 +16,7 @@ exports.pick_randomly = (a...) ->
 exports.download = (url, callback) ->
     return unless url?
     oembed.fetch url,  {}, (err, info) ->
-        return if err or not info.thumbnail_url?
+        return console.error("oembederr", err, info) if err or not info.thumbnail_url?
 #         console.log "info", info
 #         return if info.thumbnail_url.toLowerCase().indexOf('.png') is -1
         request url:info.thumbnail_url, encoding:'binary', (err, res, data) ->
