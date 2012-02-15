@@ -1,6 +1,10 @@
+{ Animation } = require 'animation'
 SDL = require 'sdl'
 SDL.init SDL.INIT.VIDEO
 SDL.events.on 'QUIT', -> process.exit 0
+
+process.on 'uncaughtException', (err) ->
+    console.log('Caught exception: ', err)
 
 W = 72
 H = 32
@@ -9,9 +13,12 @@ COLORS = 16
 
 class exports.Output
     constructor: ->
+        @animation = new Animation
+            frame:'50ms'
         @screen = SDL.setVideoMode @width * ZOOM, @height * ZOOM, 24, SDL.SURFACE.SWSURFACE
 
-        process.nextTick @loop
+        @animation.on('tick', @loop)
+        @animation.start()
 
     width:
         W
@@ -28,7 +35,7 @@ class exports.Output
     flush: ->
         SDL.flip @screen
 
-    loop: =>
+    loop: (dt) =>
         @on_drain?()
         @flush()
-        process.nextTick @loop
+
