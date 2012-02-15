@@ -20,7 +20,7 @@ exports.download = (url, callback) ->
 #         console.log "info", info
 #         return if info.thumbnail_url.toLowerCase().indexOf('.png') is -1
         request url:info.thumbnail_url, encoding:'binary', (err, res, data) ->
-            console.log "link", info.thumbnail_url, data?.length
+#             console.log "link", info.thumbnail_url, data?.length
             if res.statusCode is 200
                 callback?(info.thumbnail_url, data)
 
@@ -39,5 +39,5 @@ exports.resize = (url, size, data, callback) ->
         format:'png'
         srcFormat:ext
     }, (err, stdout, stderr) ->
-        console.log "resized", size, err
+#         console.log "resized", size, err
         callback?(new Buffer stdout, 'binary') unless err

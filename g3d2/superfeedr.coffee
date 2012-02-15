@@ -29,7 +29,7 @@ client.on 'connected', ->
 #             console.log notification.link?.href
         notification.entries.forEach (notification) ->
             util.download notification.link?.href, (url, data) ->
-                console.log "file", url
+#                 console.log "file", url
                 util.resize url, imgsize, data, (buf) ->
 #                     console.log buf
                     compositor.add new DrawImg(buf)

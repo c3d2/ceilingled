@@ -42,7 +42,7 @@ class exports.Output
 
     flush: =>
         if @sock
-            console.log @frame.map((line) -> line.join("")).join("\n")
+#             console.log @frame.map((line) -> line.join("")).join("\n")
             frame = @frame.map((line) -> line.join("")).join("")
             try @sock.write "03#{frame}\r\n"
             catch err
@@ -53,7 +53,7 @@ class exports.Output
         @on_drain?(dt)
         if @flush()
             now = getNow()
-            console.log "frametime", now - lastTick, "ms", "(#{dt}ms)"
+#             console.log "frametime", now - lastTick, "ms", "(#{dt}ms)"
             @animation.nextTick @loop
         else
             @sock.once 'drain', =>
