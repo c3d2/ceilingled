@@ -2,6 +2,10 @@ net = require 'net'
 { Animation } = require 'animation'
 { getNow } = require './util'
 
+process.on 'uncaughtException', (err) ->
+    console.log('Caught exception: ', err)
+
+
 class exports.Output
     constructor: (host="g3d2.hq.c3d2.de", port=1339) ->
         @animation = new Animation
