@@ -5,7 +5,7 @@
     "coffee-script": "*"
 ,   "canvas": "*"
 ,   "animation": "*"
-,   "superfeedr": "*"
+,   "superfeedr": "https://github.com/dodo/superfeedr-node/tarball/master"
 ,   "request": "*"
 ,   "oembed": "*"
 ,   "imagemagick": "*"
