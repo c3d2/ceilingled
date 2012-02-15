@@ -9,5 +9,6 @@
 ,   "request": "*"
 ,   "oembed": "*"
 ,   "imagemagick": "*"
+,   "sdl": "https://github.com/astro/node-sdl/tarball/master"
   }
 }

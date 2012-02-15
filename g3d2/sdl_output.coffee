@@ -21,9 +21,9 @@ class exports.Output
 
     putPixel: (x, y, r, g, b) ->
         size = Math.max(ZOOM - 1, 1)
-        color_step = 255 / COLORS
-        green = Math.ceil(Math.floor(g / color_step) * color_step)
-        SDL.fillRect @screen, [x * ZOOM, y * ZOOM, size, size], green << 8
+#         color_step = 255 / COLORS
+#         green = Math.ceil(Math.floor(g / color_step) * color_step)
+        SDL.fillRect @screen, [x * ZOOM, y * ZOOM, size, size], SDL.mapRGB @screen.format, r, g, b#green << 8
 
     flush: ->
         SDL.flip @screen
