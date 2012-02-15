@@ -66,8 +66,14 @@ class exports.DrawImg
     draw: (ctx, t) ->
 #         return console.log("NO IMAGE!!!!!!!") unless @image?
         return unless @image?
-        console.log "drawImage", @image.width, @image.height
-        ctx.drawImage @image, 0, 0, @width, @height
+#         console.log "drawImage", @image.width, @image.height
+
+#         min = ceil((@image.height - @height) * t)
+#         max = @image.height - min
+
+#         console.log "drawImage", 0, min, @image.width, max
+        ctx.translate(0, (@height - @image.height) * t)
+        ctx.drawImage @image, 0, 0, @image.width, @image.height
 
     inspect: () ->
         "IMGBUFFER"
