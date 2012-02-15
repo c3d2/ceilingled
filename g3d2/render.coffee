@@ -54,14 +54,14 @@ class exports.DrawText
 
 
 class exports.DrawImg
-    constructor: (@data) ->
+    constructor: (data) ->
         img = new Canvas.Image
         img.onload = =>
 #             console.log "image loaded.", @data.length
             @image = img
         img.onerror = (err) =>
 #             console.error "IMAGE ERRORED:", err
-        img.src = @data
+        img.src = data
 
     draw: (ctx, t) ->
 #         return console.log("NO IMAGE!!!!!!!") unless @image?
