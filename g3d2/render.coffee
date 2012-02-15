@@ -1,7 +1,7 @@
 Canvas = require('canvas')
 
-#{ Output } = require './sdl_output'
-{ Output } = require './g3d2_output'
+{ Output } = require './sdl_output'
+#{ Output } = require './g3d2_output'
 { getNow, pick_randomly } = require './util'
 
 class exports.Renderer
