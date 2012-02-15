@@ -18,10 +18,14 @@ class exports.Output
 
         sock = net.connect port, host, =>
             @sock = sock
-            @sock.write "0403\r\n"
+            try @sock.write "0404\r\n"
+            catch err
+                console.error "sockerr", err
             @animation.nextTick @loop
         #sock.on 'data', (data) ->
         #    console.log "<< #{data}"
+        sock.on 'error', (err) ->
+           console.log "SOCKET ERROR", err
         sock.on 'close', =>
             delete @sock
             console.error "G3D2 connection closed"
@@ -40,7 +44,9 @@ class exports.Output
         if @sock
             console.log @frame.map((line) -> line.join("")).join("\n")
             frame = @frame.map((line) -> line.join("")).join("")
-            @sock.write "03#{frame}\r\n"
+            try @sock.write "03#{frame}\r\n"
+            catch err
+                console.error "sockerr", err
 
     loop: (dt) =>
         lastTick = getNow()
