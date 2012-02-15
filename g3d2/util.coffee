@@ -32,12 +32,14 @@ exports.resize = (url, size, data, callback) ->
     else
         ext = ext[1 ..]
 #     console.log data
+    s = Math.max(size.width, size.height)
     resize {
         srcData:data
-        width:size.width
-        height:size.height
         format:'png'
+        width:off
+        height:off
         srcFormat:ext
+        customArgs:['-scale',"#{s}x#{s}"]
     }, (err, stdout, stderr) ->
 #         console.log "resized", size, err
         callback?(new Buffer stdout, 'binary') unless err
